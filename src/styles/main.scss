@@ -147,6 +147,10 @@ body {
 .feedback-form-container {
   background-color: $pale-gray;
   padding: 1.875rem;
+
+  .form-header h2 {
+    margin-top: 0;
+  }
 }
 
 .form-group {
@@ -178,12 +182,17 @@ body {
 
 
 }
+
+.form-input.form-input__error {
+  border-color: $red;
+}
+
 textarea {
   height: 9rem;
 }
 
 .form-required {
-  color: red;
+  color: $red;
   margin-left: 0.25rem;
 }
 
@@ -411,7 +420,7 @@ textarea {
   .thank-you {
     display: flex;
     margin-top: 0;
-    height: 50rem;
+    height: 54rem;
 
     .thank-you__content {
       margin: auto 0;
@@ -422,6 +431,6 @@ textarea {
   }
 
   .feedback-form-container {
-    height: 50rem;
+    height: 54rem;
   }
 }

@@ -50,8 +50,10 @@ html(lang='ru')
                         +review-item(review)
             .form-wrapper
                 form.feedback-form-container
+                    .form-header
+                        h2 Оставить свой отзыв
                     +form-field('Как вас зовут?', 'Иван Иванов', 'text', 'name', true)
-                    +form-field('E-mail', '@', 'email', 'email', false)
+                    +form-field('E-mail', '@', 'text', 'email', false)
                     +form-field('Контактный телефон', '+7', 'tel', 'phone', false)
                     +rating()
                     +form-field('Комментарий', 'Введите текст', 'textarea', 'comment', true)

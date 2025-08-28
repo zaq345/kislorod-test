@@ -8,6 +8,7 @@ class FormHandler {
     }
 
     init() {
+        this.form.noValidate = true;
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             this.validateForm();
@@ -91,16 +92,16 @@ class FormHandler {
 
         requiredFields.forEach(field => {
             if (!field.value.trim()) {
-                this.showError(field, 'Поле обязательно для заполнения');
+                field.classList.add('form-input__error')
                 isValid = false;
             } else {
-                this.hideError(field);
+                field.classList.remove('form-input__error')
             }
         });
 
         const emailField = this.form.querySelector('[name="email"]');
         if (emailField && emailField.value && !this.validateEmail(emailField.value)) {
-            this.showError(emailField, 'Введите корректный email');
+            emailField.classList.add('form-input__error')
             isValid = false;
         }
 
@@ -111,6 +112,30 @@ class FormHandler {
                 this.showError(fileField, 'Некорректный файл');
                 isValid = false;
             }
+        }
+
+        const ratingField = this.form.querySelector('[name="rating"]');
+        if (!ratingField.value) {
+            this.showError(ratingField, 'Некорректный рейтинг');
+            isValid = false;
+        }
+
+        const phoneField = this.form.querySelector('[name="phone"]');
+        if (phoneField.value.length && phoneField.value.length !== 18) {
+            phoneField.classList.add('form-input__error')
+            isValid = false;
+        }
+
+        const nameField = this.form.querySelector('[name="name"]');
+        if (nameField.value.length && (nameField.value.length <= 3 || nameField.value.length >= 50)) {
+            nameField.classList.add('form-input__error')
+            isValid = false;
+        }
+
+        const commentField = this.form.querySelector('[name="comment"]');
+        if (commentField.value.length && (commentField.value.length <= 3 || commentField.value.length >= 50)) {
+            commentField.classList.add('form-input__error')
+            isValid = false;
         }
 
         if (isValid) {
@@ -168,6 +193,8 @@ class FormHandler {
 
         if (!fileInput || !fileWrapper || !filePreviews) return;
 
+        this.selectedFiles = [];
+
         fileInput.addEventListener('change', (e) => {
             const files = Array.from(e.target.files);
             this.handleFileSelect(files, fileWrapper, filePreviews);
@@ -175,20 +202,27 @@ class FormHandler {
     }
 
     handleFileSelect(files, wrapper, previewsContainer) {
-        previewsContainer.innerHTML = '';
+        files.forEach(file => {
+            if (this.validateFile(file)) {
+                this.selectedFiles.push(file);
+            } else {
+                alert(`Файл ${file.name} не соответствует требованиям`);
+            }
+        });
 
-        if (files.length > 0) {
+        if (this.selectedFiles.length > 0) {
             wrapper.classList.add('file-upload__wrapper--has-files');
         } else {
             wrapper.classList.remove('file-upload__wrapper--has-files');
         }
 
-        files.forEach((file, index) => {
-            if (!this.validateFile(file)) {
-                alert(`Файл ${file.name} не соответствует требованиям`);
-                return;
-            }
+        this.updateFilePreviews(previewsContainer);
+    }
 
+    updateFilePreviews(previewsContainer) {
+        previewsContainer.innerHTML = '';
+
+        this.selectedFiles.forEach((file, index) => {
             this.createFilePreview(file, index, previewsContainer);
         });
     }
@@ -212,6 +246,7 @@ class FormHandler {
         reader.onload = (e) => {
             const preview = document.createElement('div');
             preview.className = 'file-preview';
+            preview.dataset.index = index;
 
             preview.innerHTML = `
             <img src="${e.target.result}" alt="Preview" class="preview-image">
@@ -231,15 +266,19 @@ class FormHandler {
     }
 
     removeFilePreview(previewElement, index) {
-        const fileInput = this.form.querySelector('.file-upload__input');
-        const files = Array.from(fileInput.files);
+        this.selectedFiles.splice(index, 1);
 
         previewElement.remove();
 
-        const previews = this.form.querySelectorAll('.file-preview');
-        if (previews.length === 0) {
+        const previewsContainer = this.form.querySelector('.file-previews');
+        this.updateFilePreviews(previewsContainer);
+
+        if (this.selectedFiles.length === 0) {
             const wrapper = this.form.querySelector('.file-upload__wrapper');
             wrapper.classList.remove('file-upload__wrapper--has-files');
+
+            const fileInput = this.form.querySelector('.file-upload__input');
+            fileInput.value = '';
         }
     }
 }
