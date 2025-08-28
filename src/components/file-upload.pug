@@ -1,0 +1,13 @@
+mixin file-upload()
+    .file-upload
+        .file-upload__wrapper
+            input.file-upload__input(type='file', accept='.jpg,.jpeg,.png', name='file', multiple)
+            .file-upload__label
+                .file-upload__icon
+                    img.icon-file-upload(src='../assets/img/file.svg', alt='Загрузить файл')
+                .file-upload__text
+                    p Загрузить фотографии.
+                    p Максимальный вес 10 мегабайт.
+                    p Расширение jpeg, png
+
+            .file-previews

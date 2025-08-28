@@ -1,0 +1,31 @@
+mixin review-item(review)
+    .mixed-review
+        .review-header
+            .review-date=review.date
+            .review-rating
+                each starActive in review.rating
+                    img.star(
+                        class=starActive ? 'active' : '',
+                        src=starActive ? '../assets/img/star-active.svg' : '../assets/img/star.svg'
+                    )
+            .review-author= review.author
+
+        .review-text= review.text
+
+        if review.images && review.images.length > 0
+            .review-images
+                each image in review.images
+                    img.review-image(src=image, alt='Фото из отзыва')
+
+        if review.reply
+            .reply-container
+                .reply-icon
+                    img.icon-reply(src='../assets/img/arrow.svg')
+                .reply-content
+                    .reply-header
+                        .reply-date= review.reply.date
+                        .reply-title Ответ магазина:
+                    .reply-text= review.reply.text
+                    .reply-text-end С уважением, клиентский сервис интернет-магазина
+
+    hr.divider

@@ -1,0 +1,66 @@
+include ../components/review-item.pug
+include ../components/form-field.pug
+include ../components/rating.pug
+include ../components/file-upload.pug
+
+doctype html
+html(lang='ru')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title Отзывы о товаре
+        link(rel='stylesheet', href='css/main.min.css')
+
+    body
+        .container
+            .review-wrapper
+                .page-header
+                    h1 Отзывы о товаре (2)
+
+                -
+                    var reviews = [
+                        {
+                            date: '27.08.2025',
+                            rating: [true, true, true, true, false],
+                            author: 'Иван Петров',
+                            text: 'Отличный товар! Быстрая доставка, все упаковано хорошо. Рекомендую!',
+                            images: [
+                                '../assets/img/mock2.jpg',
+                                '../assets/img/mock2.jpg',
+                            ],
+                            reply: {
+                                date: '27.08.2025',
+                                text: 'Спасибо за высокую оценку! Рады, что вам понравилось!'
+                            }
+                        },
+                        {
+                            date: '26.08.2025',
+                            rating: [true, true, true, false, false],
+                            author: 'Мария Сидорова',
+                            text: 'Товар хороший, но доставка задержалась на 2 дня. В остальном все ок.',
+                            images: [
+                                '../assets/img/mock1.jpg'
+                            ],
+                            reply: null
+                        }
+                    ]
+
+                .reviews-list
+                    each review in reviews
+                        +review-item(review)
+            .form-wrapper
+                form.feedback-form-container
+                    +form-field('Как вас зовут?', 'Иван Иванов', 'text', 'name', true)
+                    +form-field('E-mail', '@', 'email', 'email', false)
+                    +form-field('Контактный телефон', '+7', 'tel', 'phone', false)
+                    +rating()
+                    +form-field('Комментарий', 'Введите текст', 'textarea', 'comment', true)
+                    +file-upload()
+                    button.form__submit(type='submit') Отправить
+
+                .thank-you.hidden
+                    .thank-you__content
+                        h3.thank-you__title Спасибо за ваш отзыв!
+                        p.thank-you__text Ваш отзыв будет опубликован сразу после того, как его проверят наши сотрудники.
+
+        script(src='js/main.js')

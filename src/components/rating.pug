@@ -1,0 +1,7 @@
+mixin rating()
+    .rating
+        .rating-label Ваша оценка
+        .rating-stars
+            each star, index in [1, 2, 3, 4, 5]
+                .rating__star.icon-star(data-rating=index+1)
+        input.rating__input(type='hidden', name='rating', value='')

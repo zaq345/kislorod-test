@@ -1,0 +1,20 @@
+mixin form-field(label, placeholder, type, fieldName, required, value)
+    .form-group
+        .form-label-wrapper
+            label.form-label(for=fieldName)=label
+            if required
+                .form-required *
+        if type === 'textarea'
+            textarea.form-input(
+                id=fieldName,
+                name=fieldName,
+                placeholder=placeholder,
+                required=required ? 'required' : false)= value || ''
+        else
+            input.form-input(
+                type=type,
+                id=fieldName,
+                name=fieldName,
+                placeholder=placeholder,
+                required=required ? 'required' : false,
+                value=value)
