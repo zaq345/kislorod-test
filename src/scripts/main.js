@@ -139,8 +139,6 @@ class FormHandler {
             if (!field.value.trim()) {
                 field.classList.add('form-input__error')
                 isValid = false;
-            } else {
-                field.classList.remove('form-input__error')
             }
         });
 
