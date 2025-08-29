@@ -106,6 +106,7 @@ class FormHandler {
         }
 
         const fileField = this.form.querySelector('[name="file"]');
+        this.hideError(fileField)
         if (fileField.files.length > 0) {
             const file = fileField.files[0];
             if (!this.validateFile(file)) {
@@ -115,24 +116,28 @@ class FormHandler {
         }
 
         const ratingField = this.form.querySelector('[name="rating"]');
+        this.hideError(ratingField)
         if (!ratingField.value) {
             this.showError(ratingField, 'Некорректный рейтинг');
             isValid = false;
         }
 
         const phoneField = this.form.querySelector('[name="phone"]');
+        phoneField.classList.remove('form-input__error')
         if (phoneField.value.length && phoneField.value.length !== 18) {
             phoneField.classList.add('form-input__error')
             isValid = false;
         }
 
         const nameField = this.form.querySelector('[name="name"]');
+        nameField.classList.remove('form-input__error')
         if (nameField.value.length && (nameField.value.length <= 3 || nameField.value.length >= 50)) {
             nameField.classList.add('form-input__error')
             isValid = false;
         }
 
         const commentField = this.form.querySelector('[name="comment"]');
+        commentField.classList.remove('form-input__error')
         if (commentField.value.length && (commentField.value.length <= 3 || commentField.value.length >= 50)) {
             commentField.classList.add('form-input__error')
             isValid = false;
