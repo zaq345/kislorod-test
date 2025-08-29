@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы о товаре</title>
+    <link rel="stylesheet" href="css/main.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="review-wrapper">
+        <div class="page-header">
+          <h1>Отзывы о товаре (2)</h1>
+        </div>
+        <div class="reviews-list">
+          <div class="mixed-review">
+            <div class="review-header">
+              <div class="review-date">27.08.2025</div>
+              <div class="review-rating"><img class="star active" src="./assets/img/star-active.svg"/><img class="star active" src="./assets/img/star-active.svg"/><img class="star active" src="./assets/img/star-active.svg"/><img class="star active" src="./assets/img/star-active.svg"/><img class="star" src="./assets/img/star.svg"/>
+              </div>
+              <div class="review-author">Иван Петров</div>
+            </div>
+            <div class="review-text">Отличный товар! Быстрая доставка, все упаковано хорошо. Рекомендую!</div>
+            <div class="review-images"><img class="review-image" src="./assets/img/mock2.jpg" alt="Фото из отзыва"/><img class="review-image" src="./assets/img/mock2.jpg" alt="Фото из отзыва"/>
+            </div>
+            <div class="reply-container">
+              <div class="reply-icon"><img class="icon-reply" src="./assets/img/arrow.svg"/></div>
+              <div class="reply-content">
+                <div class="reply-header">
+                  <div class="reply-date">27.08.2025</div>
+                  <div class="reply-title">Ответ магазина:</div>
+                </div>
+                <div class="reply-text">Спасибо за высокую оценку! Рады, что вам понравилось!</div>
+                <div class="reply-text-end">С уважением, клиентский сервис интернет-магазина</div>
+              </div>
+            </div>
+          </div>
+          <hr class="divider"/>
+          <div class="mixed-review">
+            <div class="review-header">
+              <div class="review-date">26.08.2025</div>
+              <div class="review-rating"><img class="star active" src="./assets/img/star-active.svg"/><img class="star active" src="./assets/img/star-active.svg"/><img class="star active" src="./assets/img/star-active.svg"/><img class="star" src="./assets/img/star.svg"/><img class="star" src="./assets/img/star.svg"/>
+              </div>
+              <div class="review-author">Мария Сидорова</div>
+            </div>
+            <div class="review-text">Товар хороший, но доставка задержалась на 2 дня. В остальном все ок.</div>
+            <div class="review-images"><img class="review-image" src="./assets/img/mock1.jpg" alt="Фото из отзыва"/>
+            </div>
+          </div>
+          <hr class="divider"/>
+        </div>
+      </div>
+      <div class="form-wrapper">
+        <form class="feedback-form-container">
+          <div class="form-header">
+            <h2>Оставить свой отзыв</h2>
+          </div>
+          <div class="form-group">
+            <div class="form-label-wrapper">
+              <label class="form-label" for="name">Как вас зовут?</label>
+              <div class="form-required">*</div>
+            </div>
+            <input class="form-input" type="text" id="name" name="name" placeholder="Иван Иванов" required="required"/>
+          </div>
+          <div class="form-group">
+            <div class="form-label-wrapper">
+              <label class="form-label" for="email">E-mail</label>
+            </div>
+            <input class="form-input" type="text" id="email" name="email" placeholder="@"/>
+          </div>
+          <div class="form-group">
+            <div class="form-label-wrapper">
+              <label class="form-label" for="phone">Контактный телефон</label>
+            </div>
+            <input class="form-input" type="tel" id="phone" name="phone" placeholder="+7"/>
+          </div>
+          <div class="rating">
+            <div class="rating-label">Ваша оценка</div>
+            <div class="rating-stars">
+              <div class="rating__star icon-star" data-rating="1"></div>
+              <div class="rating__star icon-star" data-rating="2"></div>
+              <div class="rating__star icon-star" data-rating="3"></div>
+              <div class="rating__star icon-star" data-rating="4"></div>
+              <div class="rating__star icon-star" data-rating="5"></div>
+            </div>
+            <input class="rating__input" type="hidden" name="rating" value=""/>
+          </div>
+          <div class="form-group">
+            <div class="form-label-wrapper">
+              <label class="form-label" for="comment">Комментарий</label>
+              <div class="form-required">*</div>
+            </div>
+            <textarea class="form-input" id="comment" name="comment" placeholder="Введите текст" required="required"></textarea>
+          </div>
+          <div class="file-upload">
+            <div class="file-upload__wrapper">
+              <input class="file-upload__input" type="file" accept=".jpg,.jpeg,.png" name="file" multiple="multiple"/>
+              <div class="file-upload__label">
+                <div class="file-upload__icon"><img class="icon-file-upload" src="./assets/img/file.svg" alt="Загрузить файл"/></div>
+                <div class="file-upload__text">
+                  <p>Загрузить фотографии.</p>
+                  <p>Максимальный вес 10 мегабайт.</p>
+                  <p>Расширение jpeg, png</p>
+                </div>
+              </div>
+              <div class="file-previews"></div>
+            </div>
+          </div>
+          <button class="form__submit" type="submit">Отправить</button>
+        </form>
+        <div class="thank-you hidden">
+          <div class="thank-you__content">
+            <h3 class="thank-you__title">Спасибо за ваш отзыв!</h3>
+            <p class="thank-you__text">Ваш отзыв будет опубликован сразу после того, как его проверят наши сотрудники.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
