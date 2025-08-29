@@ -90,16 +90,8 @@ class FormHandler {
         const requiredFields = this.form.querySelectorAll('[required]');
         let isValid = true;
 
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                field.classList.add('form-input__error')
-                isValid = false;
-            } else {
-                field.classList.remove('form-input__error')
-            }
-        });
-
         const emailField = this.form.querySelector('[name="email"]');
+        emailField.classList.remove('form-input__error')
         if (emailField && emailField.value && !this.validateEmail(emailField.value)) {
             emailField.classList.add('form-input__error')
             isValid = false;
@@ -142,6 +134,15 @@ class FormHandler {
             commentField.classList.add('form-input__error')
             isValid = false;
         }
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('form-input__error')
+                isValid = false;
+            } else {
+                field.classList.remove('form-input__error')
+            }
+        });
 
         if (isValid) {
             this.submitForm();
